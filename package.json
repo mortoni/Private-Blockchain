@@ -1,7 +1,11 @@
 {
   "name": "Private_Blockchain",
-  "description": "Project 2 for Udacity",
+  "description": "Project 2 for Udacity, Blockchain Nanodegree",
   "version": "1.0.0",
-  "main": "app.js",
-  "license": "MIT"
+  "main": "simpleChain.js",
+  "license": "MIT",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "level": "^4.0.0"
+  }
 }
