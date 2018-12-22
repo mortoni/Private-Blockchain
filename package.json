@@ -1,0 +1,7 @@
+{
+  "name": "Private_Blockchain",
+  "description": "Project 2 for Udacity",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT"
+}
