@@ -5,10 +5,12 @@
   "main": "simpleChain.js",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "crypto-js": "^3.1.9-1",
+    "express": "^4.16.4",
     "level": "^4.0.0"
   },
   "scripts": {
-     "start": "node simpleChain.js"
+    "start": "node simpleChain.js"
   }
 }

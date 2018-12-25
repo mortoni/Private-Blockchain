@@ -1,0 +1,78 @@
+const SHA256 = require('crypto-js/sha256');
+const Block = require('./Block.js');
+const BlockChain = require('./BlockChain.js');
+
+let myBlockChain = new BlockChain.Blockchain();
+
+/**
+ * Controller Definition to encapsulate routes to work with blocks
+ */
+class BlockController {
+
+    /**
+     * Constructor to create a new BlockController, you need to initialize here all your endpoints
+     * @param {*} app
+     */
+    constructor(app) {
+        this.app = app;
+        this.blocks = [];
+        // this.initializeMockData();
+        this.getBlockByIndex();
+        this.postNewBlock();
+    }
+
+
+
+    isIndex(i) {
+        return !isNaN(parseFloat(i)) && i >= 0;
+    }
+
+    getBlockByIndex() {
+        this.app.get("/api/block/:index", (req, res) => {
+            const { index } = req.params;
+
+            if (!this.isIndex(index))
+                res.send('The parameter is not valid!');
+
+            myBlockChain.getBlockHeight().then((maxHeight) => {
+                if (maxHeight && index <= maxHeight) {
+                    myBlockChain.getBlock(index).then((block) => {
+                        res.send(`Block ${index}: ${JSON.stringify(block)}`);
+                    }).catch((err) => console.log(err));
+                } else {
+                    res.send(`the height(${index}) parameter is out of bounds`);
+                }
+            });
+        });
+    }
+
+    postNewBlock() {
+        this.app.post("/api/block", (req, res) => {
+            if (req.body.data) {
+                let block = new Block.Block(req.body.data);
+                myBlockChain.addBlock(block).then((result) => {
+        			res.send(JSON.stringify(block));
+        		});
+            } else {
+                res.send('The block has no content!');
+            }
+        });
+    }
+
+    /**
+     * Help method to inizialized Mock dataset, adds 10 test blocks to the blocks array
+     */
+    initializeMockData() {
+        if(this.blocks.length === 0){
+            for (let index = 0; index < 10; index++) {
+                let blockAux = new Block.Block(`Test Data #${index}`);
+                blockAux.height = index;
+                blockAux.hash = SHA256(JSON.stringify(blockAux)).toString();
+                this.blocks.push(blockAux);
+            }
+        }
+    }
+
+}
+
+module.exports = (app) => { return new BlockController(app);}
