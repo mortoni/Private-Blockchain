@@ -19,6 +19,9 @@ class BlockController {
         // this.initializeMockData();
         this.getBlockByIndex();
         this.postNewBlock();
+        this.validateChain();
+        this.validateBlock();
+        this.getBlockHeight();
     }
 
 
@@ -58,6 +61,42 @@ class BlockController {
             }
         });
     }
+
+    validateChain() {
+        this.app.get("/api/validateChain", (req, res) => {
+
+            myBlockChain.validateChain().then((errorLog) => {
+            	if(errorLog.length > 0){
+            		res.send(JSON.stringify({isValid: false}));
+            	} else {
+            		res.send(JSON.stringify({isValid: true}));
+            	}
+            }).catch((error) => res.send(JSON.stringify({ isValid: null })));
+        });
+    }
+
+    validateBlock() {
+        this.app.get("/api/validateBlock/:index", (req, res) => {
+            const { index } = req.params;
+
+            if (!this.isIndex(index))
+                res.send('The parameter is not valid!');
+
+            myBlockChain.validateBlock(index).then((valid) => {
+            	res.send(JSON.stringify({ isValid: valid }));
+            }).catch((error) => res.send(JSON.stringify({ isValid: null })));
+        });
+
+    }
+
+    getBlockHeight() {
+        this.app.get("/api/getBlockHeight", (req, res) => {
+            myBlockChain.getBlockHeight().then((height) => {
+            	res.send(JSON.stringify({ height }));
+            }).catch((err) => res.send(JSON.stringify({ height: null })));
+        });
+    }
+
 
     /**
      * Help method to inizialized Mock dataset, adds 10 test blocks to the blocks array

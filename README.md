@@ -13,15 +13,15 @@ Project for Udacity Blockchain developer Nanodegree.
 
 The framework for the API is `express`.
 
-You can find such endpoints:
 
-1. `getBlockByIndex` allows to fetch a block by it index.
-2. `postNewBlock` allows to create a block with data as parameter.
+## Open Endpoints
+
+* [getBlockByIndex](./markdowns/getBlockByIndex.md) : `GET /api/block/:index`
+* [postNewBlock](postNewBlock.md) : `POST /api/block/`
+* [getBlockHeight](getBlockHeight.md) : `GET /api/getBlockHeight/`
+* [validateBlock](validateBlock.md) : `GET /api/validateBlock/:index`
+* [validateChain](validateChain.md) : `GET /api/validateChain/`
 
 ## Authors
 
 * **Alan Mortoni** - *Initial work*
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
