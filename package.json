@@ -11,6 +11,6 @@
     "level": "^4.0.0"
   },
   "scripts": {
-    "start": "node simpleChain.js"
+    "start": "node app.js"
   }
 }
