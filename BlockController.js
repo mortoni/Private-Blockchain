@@ -40,7 +40,7 @@ class BlockController {
                 myBlockChain.getBlockHeight().then((maxHeight) => {
                     if (maxHeight && index <= maxHeight) {
                         myBlockChain.getBlock(index).then((block) => {
-                            res.send(`Block ${index}: ${JSON.stringify(block)}`);
+                            res.json(block);
                         }).catch((err) => console.log(err));
                     } else {
                         res.send(`the height(${index}) parameter is out of bounds`);
@@ -55,7 +55,7 @@ class BlockController {
             if (req.body.data) {
                 let block = new Block.Block(req.body.data);
                 myBlockChain.addBlock(block).then((result) => {
-        			res.send(JSON.stringify(block));
+        			res.json(block);
         		});
             } else {
                 res.send('The block has no content!');
@@ -68,11 +68,11 @@ class BlockController {
 
             myBlockChain.validateChain().then((errorLog) => {
             	if(errorLog.length > 0){
-            		res.send(JSON.stringify({isValid: false}));
+            		res.json({isValid: false});
             	} else {
-            		res.send(JSON.stringify({isValid: true}));
+            		res.json({isValid: true});
             	}
-            }).catch((error) => res.send(JSON.stringify({ isValid: null })));
+            }).catch((error) => res.json({ isValid: null }));
         });
     }
 
@@ -84,8 +84,8 @@ class BlockController {
                 res.send('The parameter is not valid!');
             } else {
                 myBlockChain.validateBlock(index).then((valid) => {
-                	res.send(JSON.stringify({ isValid: valid }));
-                }).catch((error) => res.send(JSON.stringify({ isValid: null })));
+                	res.json({ isValid: valid });
+                }).catch((error) => res.json({ isValid: null }));
             }
         });
 
@@ -94,8 +94,8 @@ class BlockController {
     getBlockHeight() {
         this.app.get("/api/getBlockHeight", (req, res) => {
             myBlockChain.getBlockHeight().then((height) => {
-            	res.send(JSON.stringify({ height }));
-            }).catch((err) => res.send(JSON.stringify({ height: null })));
+            	res.json({ height });
+            }).catch((err) => res.json({ height: null }));
         });
     }
 
