@@ -17,10 +17,10 @@ The framework for the API is `express`.
 ## Open Endpoints
 
 * [getBlockByIndex](./markdowns/getBlockByIndex.md) : `GET /api/block/:index`
-* [postNewBlock](postNewBlock.md) : `POST /api/block/`
-* [getBlockHeight](getBlockHeight.md) : `GET /api/getBlockHeight/`
-* [validateBlock](validateBlock.md) : `GET /api/validateBlock/:index`
-* [validateChain](validateChain.md) : `GET /api/validateChain/`
+* [postNewBlock](./markdowns/postNewBlock.md) : `POST /api/block/`
+* [getBlockHeight](./markdowns/getBlockHeight.md) : `GET /api/getBlockHeight/`
+* [validateBlock](./markdowns/validateBlock.md) : `GET /api/validateBlock/:index`
+* [validateChain](./markdowns/validateChain.md) : `GET /api/validateChain/`
 
 ## Authors
 

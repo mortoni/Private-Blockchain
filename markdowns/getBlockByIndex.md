@@ -1,4 +1,4 @@
-# Get Block By Id
+# Get Block by Id
 
 Get the details of a block.
 

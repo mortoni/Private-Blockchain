@@ -34,18 +34,19 @@ class BlockController {
         this.app.get("/api/block/:index", (req, res) => {
             const { index } = req.params;
 
-            if (!this.isIndex(index))
+            if (!this.isIndex(index)) {
                 res.send('The parameter is not valid!');
-
-            myBlockChain.getBlockHeight().then((maxHeight) => {
-                if (maxHeight && index <= maxHeight) {
-                    myBlockChain.getBlock(index).then((block) => {
-                        res.send(`Block ${index}: ${JSON.stringify(block)}`);
-                    }).catch((err) => console.log(err));
-                } else {
-                    res.send(`the height(${index}) parameter is out of bounds`);
-                }
-            });
+            } else {
+                myBlockChain.getBlockHeight().then((maxHeight) => {
+                    if (maxHeight && index <= maxHeight) {
+                        myBlockChain.getBlock(index).then((block) => {
+                            res.send(`Block ${index}: ${JSON.stringify(block)}`);
+                        }).catch((err) => console.log(err));
+                    } else {
+                        res.send(`the height(${index}) parameter is out of bounds`);
+                    }
+                });
+            }
         });
     }
 
@@ -79,12 +80,13 @@ class BlockController {
         this.app.get("/api/validateBlock/:index", (req, res) => {
             const { index } = req.params;
 
-            if (!this.isIndex(index))
+            if (!this.isIndex(index)) {
                 res.send('The parameter is not valid!');
-
-            myBlockChain.validateBlock(index).then((valid) => {
-            	res.send(JSON.stringify({ isValid: valid }));
-            }).catch((error) => res.send(JSON.stringify({ isValid: null })));
+            } else {
+                myBlockChain.validateBlock(index).then((valid) => {
+                	res.send(JSON.stringify({ isValid: valid }));
+                }).catch((error) => res.send(JSON.stringify({ isValid: null })));
+            }
         });
 
     }
