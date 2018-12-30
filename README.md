@@ -13,7 +13,6 @@ Project for Udacity Blockchain developer Nanodegree.
 
 The framework for the API is `express`.
 
-
 ## Open Endpoints
 
 * [getBlockByIndex](./markdowns/getBlockByIndex.md) : `GET /api/block/:index`
@@ -21,6 +20,10 @@ The framework for the API is `express`.
 * [getBlockHeight](./markdowns/getBlockHeight.md) : `GET /api/getBlockHeight/`
 * [validateBlock](./markdowns/validateBlock.md) : `GET /api/validateBlock/:index`
 * [validateChain](./markdowns/validateChain.md) : `GET /api/validateChain/`
+
+## Hints
+
+1. Start creating a block with [getBlockByIndex](./markdowns/getBlockByIndex.md) endpoint and then you will be able to call other endpoint.
 
 ## Authors
 
