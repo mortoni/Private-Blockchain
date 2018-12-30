@@ -23,7 +23,7 @@ The framework for the API is `express`.
 
 ## Hints
 
-1. Start creating a block with [getBlockByIndex](./markdowns/getBlockByIndex.md) endpoint and then you will be able to call other endpoint.
+1. Start creating a block with [postNewBlock](./markdowns/postNewBlock.md) endpoint and then you will be able to call other endpoint.
 
 ## Authors
 
