@@ -24,8 +24,6 @@ class BlockController {
         this.getBlockHeight();
     }
 
-
-
     isIndex(i) {
         return !isNaN(parseFloat(i)) && i >= 0;
     }
@@ -38,12 +36,12 @@ class BlockController {
                 res.send('The parameter is not valid!');
             } else {
                 myBlockChain.getBlockHeight().then((maxHeight) => {
-                    if (maxHeight && index <= maxHeight) {
+                    if (index <= maxHeight) {
                         myBlockChain.getBlock(index).then((block) => {
                             res.json(block);
                         }).catch((err) => console.log(err));
                     } else {
-                        res.send(`the height(${index}) parameter is out of bounds`);
+                        res.send(`The height(${index}) parameter is out of bounds`);
                     }
                 });
             }
@@ -99,7 +97,6 @@ class BlockController {
         });
     }
 
-
     /**
      * Help method to inizialized Mock dataset, adds 10 test blocks to the blocks array
      */
@@ -113,7 +110,6 @@ class BlockController {
             }
         }
     }
-
 }
 
 module.exports = (app) => { return new BlockController(app);}
